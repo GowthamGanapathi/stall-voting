@@ -47,7 +47,7 @@ export async function POST(request: NextRequest) {
     await initializeVotes();
 
     // Get current votes from KV
-    const votes = await kv.get("votes") as { [key: string]: number } || {};
+    const votes = ((await kv.get("votes")) as { [key: string]: number }) || {};
 
     // Check if stall exists
     if (!(stallName in votes)) {
@@ -78,9 +78,9 @@ export async function GET() {
   try {
     // Initialize votes if needed
     await initializeVotes();
-    
+
     // Get votes from KV
-    const votes = await kv.get("votes") as { [key: string]: number } || {};
+    const votes = ((await kv.get("votes")) as { [key: string]: number }) || {};
     return NextResponse.json(votes);
   } catch (error) {
     console.error("Error reading votes:", error);

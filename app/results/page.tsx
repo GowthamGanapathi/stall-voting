@@ -41,18 +41,37 @@ export default function ResultsPage() {
   const handleResetVotes = async () => {
     if (window.confirm("Are you sure you want to reset all votes to 0?")) {
       try {
+        console.log("Attempting to reset votes...");
         const response = await fetch("/api/reset-votes", {
           method: "POST",
         });
+
+        console.log("Reset response status:", response.status);
+
         if (response.ok) {
-          loadVoteCounts(); // Reload results after reset
+          const result = await response.json();
+          console.log("Reset successful:", result);
+
+          // Force reload of vote counts
+          await loadVoteCounts();
           alert("All votes have been reset to 0.");
         } else {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          const errorText = await response.text();
+          console.error(
+            "Reset failed with status:",
+            response.status,
+            "Error:",
+            errorText
+          );
+          throw new Error(
+            `HTTP error! status: ${response.status}, message: ${errorText}`
+          );
         }
       } catch (error) {
         console.error("Error resetting votes:", error);
-        alert("Failed to reset votes. Please try again.");
+        const errorMessage =
+          error instanceof Error ? error.message : "Unknown error";
+        alert(`Failed to reset votes: ${errorMessage}`);
       }
     }
   };

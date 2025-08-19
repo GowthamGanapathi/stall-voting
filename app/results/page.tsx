@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Trophy, Medal, Award } from "lucide-react";
+import { Trophy, Medal, Award, Trash2 } from "lucide-react";
 
 interface VoteCounts {
   [key: string]: number;
@@ -35,6 +35,25 @@ export default function ResultsPage() {
       setError("Failed to load voting results. Please try again.");
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleResetVotes = async () => {
+    if (window.confirm("Are you sure you want to reset all votes to 0?")) {
+      try {
+        const response = await fetch("/api/reset-votes", {
+          method: "POST",
+        });
+        if (response.ok) {
+          loadVoteCounts(); // Reload results after reset
+          alert("All votes have been reset to 0.");
+        } else {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+      } catch (error) {
+        console.error("Error resetting votes:", error);
+        alert("Failed to reset votes. Please try again.");
+      }
     }
   };
 
@@ -91,9 +110,18 @@ export default function ResultsPage() {
           <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
             Live Voting Results
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-600 text-lg mb-4">
             Real-time results from your stall voting event! 🎉
           </p>
+
+          {/* Reset Votes Button */}
+          <button
+            onClick={handleResetVotes}
+            className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200 flex items-center gap-2 mx-auto"
+          >
+            <Trash2 className="w-4 h-4" />
+            Reset All Votes
+          </button>
         </div>
 
         {/* Summary Stats */}

@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { kv } from "@vercel/kv";
 
+// Fallback in-memory storage for development
+let fallbackVotes: { [key: string]: number } = {};
+
 export async function POST() {
   try {
     // Reset all votes to 0
@@ -27,8 +30,14 @@ export async function POST() {
       resetVotes[name] = 0;
     });
 
-    // Save reset votes to KV
-    await kv.set("votes", resetVotes);
+    try {
+      // Try to use Vercel KV
+      await kv.set("votes", resetVotes);
+    } catch (kvError) {
+      // Fallback to in-memory storage
+      console.log("Using fallback storage due to KV error:", kvError);
+      fallbackVotes = resetVotes;
+    }
 
     return NextResponse.json({
       success: true,

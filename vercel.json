@@ -1,8 +1,1 @@
-{
-  "kv": {
-    "VOTE_STORAGE": {
-      "name": "vote-storage",
-      "type": "kv"
-    }
-  }
-}
+{}

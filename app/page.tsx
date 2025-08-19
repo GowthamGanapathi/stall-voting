@@ -235,7 +235,7 @@ export default function Home() {
 
           {/* Main Title and Catchy Text */}
           <h1 className="text-2xl font-bold text-gray-800 mb-2 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            🎯 VOTE FOR YOUR FAVOURITE STALL!
+            VOTE FOR YOUR FAVOURITE STALL!
           </h1>
           <p className="text-base text-gray-600 mb-1">
             Choose the one that impressed you most!

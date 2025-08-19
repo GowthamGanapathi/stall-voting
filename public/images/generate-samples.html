@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generate Sample Images</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #f5f5f5;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      .controls {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 20px;
+        background: white;
+        border-radius: 10px;
+      }
+      .btn {
+        background: #2563eb;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        margin: 0 10px;
+        font-size: 16px;
+      }
+      .btn:hover {
+        background: #1d4ed8;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+      .stall-preview {
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .stall-image {
+        width: 400px;
+        height: 300px;
+        border-radius: 8px;
+        margin: 10px auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-weight: bold;
+        font-size: 18px;
+        text-align: center;
+        line-height: 1.3;
+      }
+      .download-link {
+        display: inline-block;
+        margin-top: 10px;
+        color: #2563eb;
+        text-decoration: none;
+      }
+      .download-link:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="controls">
+        <h1>🎨 Sample Stall Images Generator</h1>
+        <p>
+          Click "Generate All Images" to create sample images for your 15 stalls
+        </p>
+        <button class="btn" onclick="generateAllImages()">
+          Generate All Images
+        </button>
+        <button class="btn" onclick="downloadAllImages()">
+          Download All Images
+        </button>
+      </div>
+
+      <div class="grid" id="stallGrid">
+        <!-- Stall previews will be generated here -->
+      </div>
+    </div>
+
+    <script>
+      const stalls = [
+        { name: "Bowled Over!", color: "#ef4444", filename: "bowled-over.jpg" },
+        {
+          name: "Bengaluru Traffic Exit Squad",
+          color: "#f59e0b",
+          filename: "bengaluru-traffic.jpg",
+        },
+        {
+          name: "Fire & Fly: Sparking Duos, Taking Flight",
+          color: "#dc2626",
+          filename: "fire-fly.jpg",
+        },
+        {
+          name: "Doodle Dystopia",
+          color: "#7c3aed",
+          filename: "doodle-dystopia.jpg",
+        },
+        { name: "Five Naans", color: "#059669", filename: "five-naans.jpg" },
+        {
+          name: "Peas in a Pod",
+          color: "#10b981",
+          filename: "peas-in-a-pod.jpg",
+        },
+        {
+          name: "Knot Happening",
+          color: "#0891b2",
+          filename: "knot-happening.jpg",
+        },
+        {
+          name: "Red Light Green Light",
+          color: "#dc2626",
+          filename: "red-light-green-light.jpg",
+        },
+        {
+          name: "The Lucky Rollers",
+          color: "#7c2d12",
+          filename: "lucky-rollers.jpg",
+        },
+        { name: "Decodables", color: "#1e40af", filename: "decodables.jpg" },
+        {
+          name: "Brush and Bloom",
+          color: "#059669",
+          filename: "brush-bloom.jpg",
+        },
+        { name: "Beat 50 in 60", color: "#be185d", filename: "beat-50-60.jpg" },
+        {
+          name: "Ctrl+Alt+Delight",
+          color: "#1f2937",
+          filename: "ctrl-alt-delight.jpg",
+        },
+        { name: "MazeMaven", color: "#92400e", filename: "mazemaven.jpg" },
+        {
+          name: "404 Not Found",
+          color: "#6b7280",
+          filename: "404-not-found.jpg",
+        },
+      ];
+
+      function createStallPreview(stall) {
+        const div = document.createElement("div");
+        div.className = "stall-preview";
+        div.innerHTML = `
+                <h3>${stall.name}</h3>
+                <div class="stall-image" style="background: ${stall.color}">
+                    ${stall.name}
+                </div>
+                <p><strong>Filename:</strong> ${stall.filename}</p>
+                <a href="#" class="download-link" onclick="downloadImage('${stall.filename}', '${stall.name}', '${stall.color}')">Download Image</a>
+            `;
+        return div;
+      }
+
+      function generateAllImages() {
+        const grid = document.getElementById("stallGrid");
+        grid.innerHTML = "";
+
+        stalls.forEach((stall) => {
+          grid.appendChild(createStallPreview(stall));
+        });
+      }
+
+      function downloadImage(filename, name, color) {
+        const canvas = document.createElement("canvas");
+        const ctx = canvas.getContext("2d");
+
+        canvas.width = 400;
+        canvas.height = 300;
+
+        // Fill background
+        ctx.fillStyle = color;
+        ctx.fillRect(0, 0, 400, 300);
+
+        // Add text
+        ctx.fillStyle = "white";
+        ctx.font = "bold 20px Arial";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+
+        // Split long names into multiple lines
+        const words = name.split(" ");
+        const lines = [];
+        let currentLine = "";
+
+        words.forEach((word) => {
+          if (currentLine.length + word.length < 25) {
+            currentLine += (currentLine ? " " : "") + word;
+          } else {
+            lines.push(currentLine);
+            currentLine = word;
+          }
+        });
+        if (currentLine) lines.push(currentLine);
+
+        // Draw text lines
+        const lineHeight = 30;
+        const startY = 150 - (lines.length * lineHeight) / 2;
+
+        lines.forEach((line, index) => {
+          ctx.fillText(line, 200, startY + index * lineHeight);
+        });
+
+        // Add border
+        ctx.strokeStyle = "white";
+        ctx.lineWidth = 3;
+        ctx.strokeRect(5, 5, 390, 290);
+
+        // Download
+        const link = document.createElement("a");
+        link.download = filename;
+        link.href = canvas.toDataURL();
+        link.click();
+      }
+
+      function downloadAllImages() {
+        stalls.forEach((stall) => {
+          setTimeout(() => {
+            downloadImage(stall.filename, stall.name, stall.color);
+          }, stalls.indexOf(stall) * 100);
+        });
+      }
+
+      // Generate previews on page load
+      window.onload = generateAllImages;
+    </script>
+  </body>
+</html>

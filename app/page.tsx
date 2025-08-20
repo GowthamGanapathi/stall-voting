@@ -17,7 +17,7 @@ interface Stall {
 const sampleStalls: Stall[] = [
   {
     _id: "1",
-    name: "Bowled Over!",
+    name: "Chaos Coordinators",
     description: "",
     imageUrl: "/images/bowled-over.jpg",
     category: "Technology",
@@ -65,7 +65,7 @@ const sampleStalls: Stall[] = [
   },
   {
     _id: "7",
-    name: "Knot Happening",
+    name: "Triesta",
     description: "",
     imageUrl: "/images/knot-happening.jpg",
     category: "Sports & Fitness",

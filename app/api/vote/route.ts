@@ -7,13 +7,13 @@ let fallbackVotes: { [key: string]: number } = {};
 // Initialize with default values for all stalls
 const initializeVotes = async () => {
   const stallNames = [
-    "Bowled Over!",
+    "Chaos Coordinators",
     "Bounce Master",
     "Fire & Fly: Sparking Duos, Taking Flight",
     "Doodle Dystopia",
     "Five Naans",
     "Peas in a Pod",
-    "Knot Happening",
+    "Triesta",
     "Red Light Green Light",
     "The Lucky Rollers",
     "Decodables",

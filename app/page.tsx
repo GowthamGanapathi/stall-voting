@@ -121,9 +121,9 @@ const sampleStalls: Stall[] = [
   },
   {
     _id: "14",
-    name: "MazeMaven",
+    name: "BACK TO BACHPAN",
     description: "",
-    imageUrl: "/images/mazemaven.jpg",
+    imageUrl: "/images/back-to-bachpan.jpg",
     category: "Education",
     votes: 0,
   },

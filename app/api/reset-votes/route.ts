@@ -23,7 +23,7 @@ export async function POST() {
       "Brush and Bloom",
       "Beat 50 in 60",
       "Ctrl+Alt+Delight",
-      "MazeMaven",
+      "BACK TO BACHPAN",
       "404 Not Found",
     ];
 

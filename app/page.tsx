@@ -220,9 +220,9 @@ export default function Home() {
   };
 
   return (
-    <div className="h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 overflow-y-auto">
       {/* Main Content */}
-      <main className="h-full px-4 pt-4">
+      <main className="min-h-screen px-4 pt-4 pb-6">
         {/* Header Section with Logo Space and Catchy Text */}
         <div className="text-center mb-4">
           {/* Logo Space */}

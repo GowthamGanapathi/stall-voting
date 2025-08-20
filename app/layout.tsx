@@ -5,8 +5,13 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Stall Voting Event",
+  title: "THE GREAT ESCAPE - Stall Voting Event",
   description: "Vote for your favorite stall in our fun office event!",
+  icons: {
+    icon: "/images/the-great-escape-logo.png",
+    shortcut: "/images/the-great-escape-logo.png",
+    apple: "/images/the-great-escape-logo.png",
+  },
 };
 
 export default function RootLayout({

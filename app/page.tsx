@@ -25,7 +25,7 @@ const sampleStalls: Stall[] = [
   },
   {
     _id: "2",
-    name: "Bengaluru Traffic Exit Squad",
+    name: "Bounce Master",
     description: "",
     imageUrl: "/images/bengaluru-traffic.jpg",
     category: "Food & Beverage",

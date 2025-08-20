@@ -8,7 +8,7 @@ let fallbackVotes: { [key: string]: number } = {};
 const initializeVotes = async () => {
   const stallNames = [
     "Bowled Over!",
-    "Bengaluru Traffic Exit Squad",
+    "Bounce Master",
     "Fire & Fly: Sparking Duos, Taking Flight",
     "Doodle Dystopia",
     "Five Naans",

@@ -62,7 +62,7 @@ export default function StallCard({ stall, onVote }: StallCardProps) {
           <motion.img
             src={stall.imageUrl}
             alt={stall.name}
-            className="w-full h-40 object-cover transition-transform duration-500 group-hover:scale-110"
+            className="w-full h-40 object-contain bg-gradient-to-br from-gray-100 to-gray-200 transition-transform duration-500 group-hover:scale-110"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.src =

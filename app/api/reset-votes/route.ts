@@ -11,7 +11,7 @@ export async function POST() {
     // Reset all votes to 0
     const stallNames = [
       "Bowled Over!",
-      "Bengaluru Traffic Exit Squad",
+      "Bounce Master",
       "Fire & Fly: Sparking Duos, Taking Flight",
       "Doodle Dystopia",
       "Five Naans",

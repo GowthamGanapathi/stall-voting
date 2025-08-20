@@ -226,16 +226,16 @@ export default function Home() {
         {/* Header Section with Logo Space and Catchy Text */}
         <div className="text-center mb-4">
           {/* Logo Space */}
-          <div className="mb-3">
-            <div className="w-28 h-28 mx-auto flex items-center justify-center">
+          <div className="mb-2">
+            <div className="w-52 h-52 mx-auto flex items-center justify-center">
               <img
                 src="/images/the-great-escape-logo.png"
                 alt="THE GREAT ESCAPE"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-contain drop-shadow-2xl"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.src =
-                    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='112' height='112' viewBox='0 0 112 112'%3E%3Crect width='112' height='112' fill='%23f3f4f6'/%3E%3Ctext x='56' y='63' font-family='Arial' font-size='11' fill='%236b7280' text-anchor='middle' dominant-baseline='middle'%3ETHE GREAT ESCAPE%3C/text%3E%3C/svg%3E";
+                    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='208' height='208' viewBox='0 0 208 208'%3E%3Crect width='208' height='208' fill='%23f3f4f6'/%3E%3Ctext x='104' y='117' font-family='Arial' font-size='20' fill='%236b7280' text-anchor='middle' dominant-baseline='middle'%3ETHE GREAT ESCAPE%3C/text%3E%3C/svg%3E";
                 }}
               />
             </div>
